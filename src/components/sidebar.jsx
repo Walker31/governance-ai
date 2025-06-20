@@ -13,11 +13,10 @@ const Sidebar = ({ open, onToggle }) => {
         transition-all duration-300
         overflow-y-auto
       `}
-      // No width classes here!
     >
       {/* Toggle Button */}
       <button
-        className="mb-6 p-2 rounded hover:bg-[#3b6ef3] transition self-end"
+        className="mb-6 p-2 rounded hover:bg-[#3b6ef3] transition self-center"
         onClick={onToggle}
         aria-label={open ? "Close sidebar" : "Open sidebar"}
       >
@@ -25,9 +24,9 @@ const Sidebar = ({ open, onToggle }) => {
       </button>
       <nav className="flex flex-col space-y-2">
         <SidebarItem icon={<FaHome />} label="Dashboard" to="/" open={open} />
-        <SidebarItem icon={<DescriptionIcon />} label="Ai-Policies" to="/create" open={open} />
-        <SidebarItem icon={<FaChartBar />} label="Ai-Assets" to="/analytics" open={open} />
-        <SidebarItem icon={<AssessmentIcon />} label="Frameworks" to="/settings" open={open} />
+        <SidebarItem icon={<DescriptionIcon />} label="Ai-Policies" to="/policies" open={open} />
+        <SidebarItem icon={<FaChartBar />} label="Ai-Assets" to="/assets" open={open} />
+        <SidebarItem icon={<AssessmentIcon />} label="Reports" to="/reports" open={open} />
         <SidebarItem icon={<BoltSharpIcon />} label="Enterprise AI-Readiness" to="/Enterprise" open={open} />
       </nav>
     </aside>

@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import LoginIcon from "@mui/icons-material/Login";
+import PersonIcon from '@mui/icons-material/Person';
 
 const Navbar = () => {
   return (
@@ -35,7 +35,7 @@ const Navbar = () => {
           </Button>
           <Button
             variant="outlined"
-            startIcon={<LoginIcon />}
+            startIcon={<PersonIcon />}
             className="!border-[#1d4ed8] !text-[#1d4ed8] !bg-gray-100 hover:!bg-blue-50 transition-all duration-200"
             sx={{
               textTransform: "none",
