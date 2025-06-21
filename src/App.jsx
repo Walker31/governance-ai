@@ -5,8 +5,8 @@ import Enterprise from "./pages/Enterprise/main";
 import Policies from "./pages/Policy/main";
 import Assets from "./pages/assets";
 import Report from "./pages/Reports/main";
-
-const CreateUseCase = () => <div style={{ padding: "1rem" }}>Create a new Use Case</div>;
+import UseCase from "./pages/useCase/main";
+import Questionare from "./pages/quetionare/main";
 
 function App() {
   return (
@@ -14,11 +14,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="create" element={<CreateUseCase />} />
           <Route path="policies" element={<Policies />} />
           <Route path="Enterprise" element={<Enterprise />} />
           <Route path="reports" element={<Report />} />
           <Route path="assets" element={<Assets />} />
+          <Route path="usecase" element={<UseCase/>} />
+          <Route path="questionare" element={<Questionare/>}/>
         </Route>
       </Routes>
     </Router>

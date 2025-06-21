@@ -1,8 +1,10 @@
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import PersonIcon from '@mui/icons-material/Person';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <AppBar
       position="static"
@@ -23,6 +25,9 @@ const Navbar = () => {
         {/* Actions */}
         <Box className="flex items-center gap-3">
           <Button
+          onClick={
+            () => navigate('/usecase') 
+          }
             variant="contained"
             startIcon={<AddIcon />}
             className="!bg-[#1d4ed8] !text-white !font-semibold !shadow-none hover:!bg-[#2563eb] transition-all duration-200"
