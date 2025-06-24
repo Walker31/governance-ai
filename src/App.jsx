@@ -7,6 +7,8 @@ import Assets from "./pages/assets";
 import Report from "./pages/Reports/main";
 import UseCase from "./pages/useCase/main";
 import Questionare from "./pages/quetionare/main";
+import Projects from "./pages/Projects/main";
+import ProjectView from "./pages/Projects/projectView";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="assets" element={<Assets />} />
           <Route path="usecase" element={<UseCase/>} />
           <Route path="questionare" element={<Questionare/>}/>
+          <Route path="projects" element={<Projects/>}/>
+          <Route path="project-view" element={<ProjectView/>}/>
         </Route>
       </Routes>
     </Router>

@@ -4,6 +4,7 @@ import { FaHome, FaBars, FaChartBar } from "react-icons/fa";
 import DescriptionIcon from '@mui/icons-material/Description';
 import BoltSharpIcon from '@mui/icons-material/BoltSharp';
 import AssessmentIcon from '@mui/icons-material/Assessment';
+import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 
 const Sidebar = ({ open, onToggle }) => {
   return (
@@ -24,6 +25,7 @@ const Sidebar = ({ open, onToggle }) => {
       </button>
       <nav className="flex flex-col space-y-2">
         <SidebarItem icon={<FaHome />} label="Dashboard" to="/" open={open} />
+        <SidebarItem icon={<AutoAwesomeMotionIcon />} label="Projects" to="/projects" open={open} />
         <SidebarItem icon={<DescriptionIcon />} label="Ai-Policies" to="/policies" open={open} />
         <SidebarItem icon={<FaChartBar />} label="Ai-Assets" to="/assets" open={open} />
         <SidebarItem icon={<AssessmentIcon />} label="Reports" to="/reports" open={open} />
