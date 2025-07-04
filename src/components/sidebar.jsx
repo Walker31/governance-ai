@@ -5,6 +5,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import BoltSharpIcon from '@mui/icons-material/BoltSharp';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
+import FolderIcon from '@mui/icons-material/Folder';
 
 const Sidebar = ({ open, onToggle }) => {
   return (
@@ -27,6 +28,7 @@ const Sidebar = ({ open, onToggle }) => {
         <SidebarItem icon={<FaHome />} label="Dashboard" to="/" open={open} />
         <SidebarItem icon={<AutoAwesomeMotionIcon />} label="Projects" to="/projects" open={open} />
         <SidebarItem icon={<DescriptionIcon />} label="Ai-Policies" to="/policies" open={open} />
+        <SidebarItem icon={<FolderIcon />} label="Templates" to="/templates" open={open} />
         <SidebarItem icon={<FaChartBar />} label="Ai-Assets" to="/assets" open={open} />
         <SidebarItem icon={<AssessmentIcon />} label="Reports" to="/reports" open={open} />
         <SidebarItem icon={<BoltSharpIcon />} label="Enterprise AI-Readiness" to="/Enterprise" open={open} />

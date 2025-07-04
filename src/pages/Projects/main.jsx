@@ -12,7 +12,7 @@ const Projects = () => {
         <div className="text-xl font-semibold">Projects Overview</div>
         <Button variant="outlined" startIcon={<AddCircleOutlineSharpIcon />}>
           <span className="px-2 py-1">New Project</span>
-        </Button>
+        </Button>0
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
