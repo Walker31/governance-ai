@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import authService from '../services/authService.js';
 
 const AuthContext = createContext();
 
@@ -56,32 +57,99 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Initialize user from localStorage on app start
+  // Initialize user from localStorage and verify token on app start
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
+    const initializeAuth = async () => {
       try {
-        setUser(JSON.parse(savedUser));
+        const token = localStorage.getItem('token');
+        const savedUser = localStorage.getItem('user');
+
+        if (token && savedUser) {
+          // Verify token with backend
+          const response = await authService.getProfile();
+          const userWithPermissions = {
+            ...response.data.user,
+            permissions: ROLE_PERMISSIONS[response.data.user.role] || []
+          };
+          setUser(userWithPermissions);
+          localStorage.setItem('user', JSON.stringify(userWithPermissions));
+        } else if (token) {
+          // Token exists but no user data, clear invalid token
+          authService.logout();
+        }
       } catch (error) {
-        console.error('Error parsing saved user:', error);
-        localStorage.removeItem('user');
+        console.error('Error initializing auth:', error);
+        // Clear invalid data
+        authService.logout();
+      } finally {
+        setLoading(false);
       }
-    }
-    setLoading(false);
+    };
+
+    initializeAuth();
   }, []);
 
-  const login = (userData) => {
-    const userWithPermissions = {
-      ...userData,
-      permissions: ROLE_PERMISSIONS[userData.role] || []
-    };
-    setUser(userWithPermissions);
-    localStorage.setItem('user', JSON.stringify(userWithPermissions));
+  const login = async (credentials) => {
+    try {
+      const response = await authService.login(credentials);
+      const userWithPermissions = {
+        ...response.data.user,
+        permissions: ROLE_PERMISSIONS[response.data.user.role] || []
+      };
+      setUser(userWithPermissions);
+      localStorage.setItem('user', JSON.stringify(userWithPermissions));
+      return { success: true };
+    } catch (error) {
+      console.error('Login error:', error);
+      return { success: false, error: error.message };
+    }
+  };
+
+  const register = async (userData) => {
+    try {
+      const response = await authService.register(userData);
+      const userWithPermissions = {
+        ...response.data.user,
+        permissions: ROLE_PERMISSIONS[response.data.user.role] || []
+      };
+      setUser(userWithPermissions);
+      localStorage.setItem('user', JSON.stringify(userWithPermissions));
+      return { success: true };
+    } catch (error) {
+      console.error('Registration error:', error);
+      return { success: false, error: error.message };
+    }
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    authService.logout();
+  };
+
+  const updateProfile = async (profileData) => {
+    try {
+      const response = await authService.updateProfile(profileData);
+      const userWithPermissions = {
+        ...response.data.user,
+        permissions: ROLE_PERMISSIONS[response.data.user.role] || []
+      };
+      setUser(userWithPermissions);
+      localStorage.setItem('user', JSON.stringify(userWithPermissions));
+      return { success: true };
+    } catch (error) {
+      console.error('Profile update error:', error);
+      return { success: false, error: error.message };
+    }
+  };
+
+  const changePassword = async (passwordData) => {
+    try {
+      await authService.changePassword(passwordData);
+      return { success: true };
+    } catch (error) {
+      console.error('Password change error:', error);
+      return { success: false, error: error.message };
+    }
   };
 
   const hasPermission = (permission) => {
@@ -100,7 +168,10 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     login,
+    register,
     logout,
+    updateProfile,
+    changePassword,
     hasPermission,
     hasRole,
     isAdmin,

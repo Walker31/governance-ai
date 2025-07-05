@@ -11,6 +11,7 @@ import UseCase from "./pages/useCase/main";
 import Questionare from "./pages/quetionare/main";
 import Projects from "./pages/Projects/main";
 import ProjectView from "./pages/Projects/projectView";
+import UserManagement from "./pages/UserManagement/main";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="questionare" element={<Questionare/>}/>
             <Route path="projects" element={<Projects/>}/>
             <Route path="project-view" element={<ProjectView/>}/>
+            <Route path="users" element={<UserManagement />} />
           </Route>
         </Routes>
       </Router>

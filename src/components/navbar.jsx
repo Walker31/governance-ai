@@ -1,15 +1,17 @@
-import { AppBar, Toolbar, Typography, Button, Box, Avatar, Menu, MenuItem } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Box, Avatar, Menu, MenuItem, Divider } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import LoginModal from './LoginModal';
+import AuthModal from './AuthModal';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logout, isAdmin } = useAuth();
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuOpen = (event) => {
@@ -25,6 +27,18 @@ const Navbar = () => {
     handleMenuClose();
   };
 
+  const handleProfileClick = () => {
+    handleMenuClose();
+    // Navigate to profile page or open profile modal
+    // navigate('/profile');
+  };
+
+  const handleSettingsClick = () => {
+    handleMenuClose();
+    // Navigate to settings page
+    // navigate('/settings');
+  };
+
   return (
     <>
       <AppBar
@@ -38,7 +52,8 @@ const Navbar = () => {
           <Typography
             variant="h6"
             component="div"
-            className="font-bold text-[#1d4ed8] tracking-wide text-2xl md:text-3xl"
+            className="font-bold text-[#1d4ed8] tracking-wide text-2xl md:text-3xl cursor-pointer"
+            onClick={() => navigate('/')}
           >
             Rakfort
           </Typography>
@@ -83,14 +98,28 @@ const Navbar = () => {
                   open={Boolean(anchorEl)}
                   onClose={handleMenuClose}
                   className="mt-2"
+                  PaperProps={{
+                    className: "min-w-[200px]"
+                  }}
                 >
-                  <MenuItem onClick={handleMenuClose}>
+                  <MenuItem onClick={handleProfileClick} className="py-3">
                     <div className="text-sm">
                       <div className="font-medium">{user.name}</div>
                       <div className="text-gray-500">{user.email}</div>
                     </div>
                   </MenuItem>
-                  <MenuItem onClick={handleLogout} className="text-red-600">
+                  <Divider />
+                  <MenuItem onClick={handleProfileClick} className="py-2">
+                    <PersonIcon className="mr-3 text-gray-500" fontSize="small" />
+                    Profile
+                  </MenuItem>
+                  <MenuItem onClick={handleSettingsClick} className="py-2">
+                    <SettingsIcon className="mr-3 text-gray-500" fontSize="small" />
+                    Settings
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={handleLogout} className="text-red-600 py-2">
+                    <LogoutIcon className="mr-3" fontSize="small" />
                     Logout
                   </MenuItem>
                 </Menu>
@@ -99,7 +128,7 @@ const Navbar = () => {
               <Button
                 variant="outlined"
                 startIcon={<PersonIcon />}
-                onClick={() => setShowLoginModal(true)}
+                onClick={() => setShowAuthModal(true)}
                 className="!border-[#1d4ed8] !text-[#1d4ed8] !bg-gray-100 hover:!bg-blue-50 transition-all duration-200"
                 sx={{
                   textTransform: "none",
@@ -115,9 +144,9 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
 
-      <LoginModal 
-        isOpen={showLoginModal} 
-        onClose={() => setShowLoginModal(false)} 
+      <AuthModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)} 
       />
     </>
   );

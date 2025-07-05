@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const NewTemplateModal = ({ onClose, onCreate, responseTypes }) => {
   const [templateData, setTemplateData] = useState({

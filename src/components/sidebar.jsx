@@ -6,8 +6,12 @@ import BoltSharpIcon from '@mui/icons-material/BoltSharp';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 import FolderIcon from '@mui/icons-material/Folder';
+import PeopleIcon from '@mui/icons-material/People';
+import { useAuth } from '../contexts/AuthContext';
 
 const Sidebar = ({ open, onToggle }) => {
+  const { isAdmin } = useAuth();
+
   return (
     <aside
       className={`
@@ -32,6 +36,14 @@ const Sidebar = ({ open, onToggle }) => {
         <SidebarItem icon={<FaChartBar />} label="Ai-Assets" to="/assets" open={open} />
         <SidebarItem icon={<AssessmentIcon />} label="Reports" to="/reports" open={open} />
         <SidebarItem icon={<BoltSharpIcon />} label="Enterprise AI-Readiness" to="/Enterprise" open={open} />
+        
+        {/* Admin-only section */}
+        {isAdmin() && (
+          <>
+            <div className={`border-t border-white/20 my-2 ${open ? 'mx-4' : 'mx-2'}`} />
+            <SidebarItem icon={<PeopleIcon />} label="User Management" to="/users" open={open} />
+          </>
+        )}
       </nav>
     </aside>
   );

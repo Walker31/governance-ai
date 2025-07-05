@@ -1,4 +1,3 @@
-import React from 'react';
 
 const TemplateItem = ({ template, isSelected, onSelect, onStartResponse }) => {
   return (

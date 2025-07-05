@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ResponsesList = ({ responses, templates }) => {
   const [selectedResponse, setSelectedResponse] = useState(null);
