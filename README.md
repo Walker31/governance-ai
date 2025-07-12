@@ -39,7 +39,7 @@ Before you begin, ensure you have the following installed:
 3. **Environment Setup**:
    Create a `.env` file in the root directory:
    ```env
-   VITE_API_URL=http://localhost:3001
+   VITE_API_URL=http://localhost:3000
    VITE_AGENT_URL=http://localhost:8000
    ```
 
