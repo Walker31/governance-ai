@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaHome, FaBars, FaChartBar } from "react-icons/fa";
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -8,6 +7,7 @@ import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 import FolderIcon from '@mui/icons-material/Folder';
 import PeopleIcon from '@mui/icons-material/People';
 import { useAuth } from '../contexts/AuthContext';
+import ChatIcon from '@mui/icons-material/Chat';
 
 const Sidebar = ({ open, onToggle }) => {
   const { isAdmin } = useAuth();
@@ -36,6 +36,7 @@ const Sidebar = ({ open, onToggle }) => {
         <SidebarItem icon={<FaChartBar />} label="Ai-Assets" to="/assets" open={open} />
         <SidebarItem icon={<AssessmentIcon />} label="Reports" to="/reports" open={open} />
         <SidebarItem icon={<BoltSharpIcon />} label="Enterprise AI-Readiness" to="/Enterprise" open={open} />
+        <SidebarItem icon={<ChatIcon />} label="Chat" to="/chat" open={open} />
         
         {/* Admin-only section */}
         {isAdmin() && (

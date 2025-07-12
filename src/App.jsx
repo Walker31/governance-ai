@@ -12,6 +12,7 @@ import Questionare from "./pages/quetionare/main";
 import Projects from "./pages/Projects/main";
 import ProjectView from "./pages/Projects/projectView";
 import UserManagement from "./pages/UserManagement/main";
+import ChatAgent from "./pages/ChatAgent/main";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="projects" element={<Projects/>}/>
             <Route path="project-view" element={<ProjectView/>}/>
             <Route path="users" element={<UserManagement />} />
+            <Route path="chat" element={<ChatAgent />} />
           </Route>
         </Routes>
       </Router>

@@ -11,7 +11,6 @@ export const useAuth = () => {
   return context;
 };
 
-// Role definitions with permissions
 export const ROLES = {
   ADMIN: 'admin',
   USER: 'user'
@@ -34,7 +33,7 @@ export const PERMISSIONS = {
   MANAGE_USERS: 'manage_users'
 };
 
-// Permission mapping for each role
+// Permission mapping for each rolec
 const ROLE_PERMISSIONS = {
   [ROLES.ADMIN]: [
     PERMISSIONS.VIEW_TEMPLATES,

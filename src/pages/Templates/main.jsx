@@ -147,15 +147,20 @@ const Templates = () => {
         {activeTab === 'templates' ? (
           <>
             {/* Loading State */}
-            {loading && (
+            {
+            !user ? (
+                <div className="text-center py-12">
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">Login Required</h3>
+                  <p className="text-gray-500 mb-4">Please log in to access templates.</p>
+                  {/* Optionally, add a login button/modal trigger here */}
+                </div>
+              ): 
+              loading ? (
               <div className="text-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
                 <p className="mt-4 text-gray-600">Loading templates...</p>
               </div>
-            )}
-
-            {/* Error State */}
-            {error && (
+            ): error? (
               <div className="text-center py-12">
                 <div className="text-red-600 mb-4">
                   <svg className="mx-auto h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,10 +176,7 @@ const Templates = () => {
                   Try Again
                 </button>
               </div>
-            )}
-
-            {/* Templates Grid */}
-            {!loading && !error && (
+            ): (
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                 {templates.map((template) => (
                   <TemplateItem
